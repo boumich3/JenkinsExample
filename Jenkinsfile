@@ -1,9 +1,14 @@
 pipeline {
-    agent any
+    agent none 
     stages {
-        stage('build') {
+        stage('Build') { 
+            agent {
+                docker {
+                    image 'python:2-alpine' 
+                }
+            }
             steps {
-                sh 'groups'
+                sh 'python -m py_compile main.py' 
             }
         }
     }
