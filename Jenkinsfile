@@ -1,16 +1,14 @@
 pipeline {
     agent none 
     stages {
-        stage('Build') { 
+        stage('SonarQube Scanner') { 
             agent {
                 docker {
                     image 'newtmitch/sonar-scanner:3.0.3-alpine' 
                 }
             }
             steps {
-                withSonarQubeEnv('My SonarQube Server') {
-                    sh 'sonnar-scanner'
-                }
+                sh 'sonnar-scanner'
             }
         }
         stage("Quality Gate") {
