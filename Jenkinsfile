@@ -21,7 +21,7 @@ pipeline {
             agent any
             steps {
                 script {
-                    def sonarqubeScannerHome = tool name: 'SonarQubeScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                    def sonarqubeScannerHome = tool name: 'SonarQube Scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
                     sh "${sonarqubeScannerHome}/bin/sonar-scanner"
                 }
             }
