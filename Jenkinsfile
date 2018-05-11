@@ -2,11 +2,7 @@ pipeline {
     agent none 
     stages {
         stage('Build') { 
-            agent {
-                docker {
-                    image 'python:2-alpine' 
-                }
-            }
+            agent any
             steps {
                 withSonarQubeEnv('My SonarQube Server') {
                     sh 'sonnar-scanner'
