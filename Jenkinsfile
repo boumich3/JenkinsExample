@@ -20,8 +20,10 @@ pipeline {
         stage('SonarQube Scanner') { 
             agent any
             steps {
-                def sonarqubeScannerHome = tool name: 'SonarQubeScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                sh "${sonarqubeScannerHome}/bin/sonar-scanner"
+                script {
+                    def sonarqubeScannerHome = tool name: 'SonarQubeScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                    sh "${sonarqubeScannerHome}/bin/sonar-scanner"
+                }
             }
         }
         stage("Quality Gate") {
