@@ -18,13 +18,9 @@ pipeline {
             }
         }
         stage('SonarQube Scanner') { 
-            agent {
-                docker {
-                    image 'newtmitch/sonar-scanner:3.0.3-alpine' 
-                }
-            }
+            agent any
             steps {
-                sh 'sonnar-scanner'
+                sh "${sonarqubeScannerHome}/bin/sonar-scanner"
             }
         }
         stage("Quality Gate") {
