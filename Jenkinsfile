@@ -9,6 +9,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('My SonarQube Server') {
+                    sh 'groups'
                     sh 'sonnar-scanner'
                 }
             }
