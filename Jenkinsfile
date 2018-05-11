@@ -8,7 +8,16 @@ pipeline {
                 }
             }
             steps {
-                sh 'python -m py_compile main.py' 
+                withSonarQubeEnv('My SonarQube Server') {
+                    sh 'sonnar-scanner'
+                }
+            }
+        }
+        stage("Quality Gate") {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    waitForQualityGate abortPipeline: true
+                }
             }
         }
     }
